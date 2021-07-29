@@ -7,10 +7,13 @@ uses search() to query "song title + artist"
 returns youtube links 
 """
 import os
-os.chdir('D:\\Files\\Documents\\Programming\\Projects\\Spotify Playlist Downloader')
+import sys
+
 from googleapiclient.discovery import build
 from SpotifyWrapper import SpotifyConnect
 from pytube import YouTube
+
+os.chdir(os.path.abspath(os.path.dirname(sys.argv[0])))
 
 #call api get auth
 key = os.environ['google']
@@ -84,7 +87,7 @@ print(video_links)
 
 #now with dict of videolinks where keys are titles
 # download
-os.chdir('D:\\Files\\Documents\\Programming\\Projects\\Spotify Playlist Downloader\Downloads')
+os.chdir('.\Downloads')
 for title in [*video_links]:
     print('\nDownloading ' + title + ' from ' + [*video_links[title]][0] + '\n')
     download = YouTube([*video_links[title]][0])
